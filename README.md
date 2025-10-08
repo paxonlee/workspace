@@ -7,7 +7,7 @@ An out-of-the-box workspace for modern Python projects.
 
 ## Features
 
-- System: `ubuntu:24.04`
+- System: `ubuntu:questing(25.10)`
 - Shell: `oh-my-zsh` with auto-suggestions and syntax highlighting
 - Version Control: `jujutsu:0.34.0`
 - Python project and package management: `uv`
