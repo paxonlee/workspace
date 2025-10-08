@@ -9,3 +9,4 @@ An out-of-the-box workspace for modern Python projects.
 
 - System: `ubuntu:24.04`
 - Shell: `oh-my-zsh` with auto-suggestions and syntax highlighting
+- Version Control: `jujutsu:0.34.0`
