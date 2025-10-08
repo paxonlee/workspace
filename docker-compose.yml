@@ -3,6 +3,9 @@ services:
     image: paxonlee/workspace:latest
     container_name: workspace
     hostname: workspace
+    volumes:
+      - ${HOME}/projects:/root/projects
+      - ${HOME}/.config/jj:/root/.config/jj:ro
     restart: unless-stopped
     stdin_open: true
     tty: true
