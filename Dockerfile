@@ -14,6 +14,10 @@ RUN wget https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v
     tar -xzf jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz -C /tmp/jj --strip-components=1 && \
     mv /tmp/jj/jj /usr/local/bin/jj && \
     rm -rf /tmp/jj jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz
+
+# uv
+RUN apt-get update && apt-get install -y curl
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
     
 WORKDIR /root/projects
 
