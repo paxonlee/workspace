@@ -1,7 +1,9 @@
-FROM ubuntu:24.04
+FROM ubuntu:questing
 
 # system packages
-RUN apt-get update && apt-get install -y curl git openssh-server wget zsh
+RUN apt-get update && apt-get install -y curl git openssh-server python3-pip wget zsh
+RUN pip3 install --upgrade --break-system-packages --ignore-installed pip cryptography>=42.0.0 setuptools>=78.1.1
+RUN apt-get remove -y python3-pip python3-cryptography python3-setuptools || true
 
 # oh-my-zsh
 RUN sh -c "$(wget -O- https://install.ohmyz.sh)" && \
@@ -21,7 +23,7 @@ RUN wget https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # ssh
-RUN mkdir /var/run/sshd && \
+RUN mkdir -p /var/run/sshd && \
     sed -i '/#\?PermitRootLogin/s/.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
     sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
