@@ -9,6 +9,7 @@ services:
       - ${HOME}/projects:/root/projects
       - ${HOME}/.config/jj:/root/.config/jj:ro
       - ${HOME}/.ssh/allowed_signers:/root/.ssh/allowed_signers:ro
+      - ${HOME}/.ssh/id_ed25519.pub:/root/.ssh/authorized_keys:ro
     restart: unless-stopped
     stdin_open: true
     tty: true
