@@ -5,11 +5,7 @@
 
 An out-of-the-box workspace for modern Python projects.
 
-## Releases
-
-### 0.1.0
-
-A minimal version that only tests docker-related features.
+## Features
 
 - System: `ubuntu:24.04`
-- Shell: `bash`
+- Shell: `oh-my-zsh` with auto-suggestions and syntax highlighting
