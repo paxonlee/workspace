@@ -11,3 +11,4 @@ An out-of-the-box workspace for modern Python projects.
 - Shell: `oh-my-zsh` with auto-suggestions and syntax highlighting
 - Version Control: `jujutsu:0.34.0`
 - Python project and package management: `uv`
+- Log in to the container via SSH
