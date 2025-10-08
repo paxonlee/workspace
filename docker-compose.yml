@@ -6,6 +6,7 @@ services:
     volumes:
       - ${HOME}/projects:/root/projects
       - ${HOME}/.config/jj:/root/.config/jj:ro
+      - ${HOME}/.ssh/allowed_signers:/root/.ssh/allowed_signers:ro
     restart: unless-stopped
     stdin_open: true
     tty: true
