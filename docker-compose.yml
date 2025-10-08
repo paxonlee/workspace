@@ -3,6 +3,8 @@ services:
     image: paxonlee/workspace:latest
     container_name: workspace
     hostname: workspace
+    ports:
+      - 22
     volumes:
       - ${HOME}/projects:/root/projects
       - ${HOME}/.config/jj:/root/.config/jj:ro

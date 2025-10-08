@@ -1,7 +1,7 @@
 FROM ubuntu:24.04
 
 # system packages
-RUN apt-get update && apt-get install -y curl git wget zsh
+RUN apt-get update && apt-get install -y curl git openssh-server wget zsh
 
 # oh-my-zsh
 RUN sh -c "$(wget -O- https://install.ohmyz.sh)" && \
@@ -19,7 +19,17 @@ RUN wget https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v
 
 # uv
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-    
-WORKDIR /root/projects
 
-CMD ["zsh"]
+# ssh
+RUN mkdir /var/run/sshd && \
+    sed -i '/#\?PermitRootLogin/s/.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+    sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+
+# start script
+RUN echo "/usr/sbin/sshd" >> /start.sh && \
+    echo 'echo "root:${PASSWORD:-docker}" | chpasswd' >> /start.sh && \
+    echo "exec zsh" >> /start.sh && \
+    chmod +x /start.sh
+
+WORKDIR /root/projects
+CMD ["zsh", "/start.sh"]
