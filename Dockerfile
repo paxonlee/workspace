@@ -13,11 +13,13 @@ RUN sh -c "$(wget -O- https://install.ohmyz.sh)" && \
 
 # jujutsu
 ARG JUJUTSU_VERSION=0.34.0
-RUN wget https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz && \
+ARG TARGETARCH
+RUN ARCH=$([ "$TARGETARCH" = "amd64" ] && echo "x86_64" || echo "aarch64") && \
+    wget https://github.com/jj-vcs/jj/releases/download/v${JUJUTSU_VERSION}/jj-v${JUJUTSU_VERSION}-${ARCH}-unknown-linux-musl.tar.gz && \
     mkdir -p /tmp/jj && \
-    tar -xzf jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz -C /tmp/jj --strip-components=1 && \
+    tar -xzf jj-v${JUJUTSU_VERSION}-${ARCH}-unknown-linux-musl.tar.gz -C /tmp/jj --strip-components=1 && \
     mv /tmp/jj/jj /usr/local/bin/jj && \
-    rm -rf /tmp/jj jj-v${JUJUTSU_VERSION}-x86_64-unknown-linux-musl.tar.gz
+    rm -rf /tmp/jj jj-v${JUJUTSU_VERSION}-${ARCH}-unknown-linux-musl.tar.gz
 
 # uv
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
