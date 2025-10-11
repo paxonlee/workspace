@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Release
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - "v*"
 
 jobs:
-  build-and-push:
+  release:
     runs-on: ubuntu-latest
 
     steps:
